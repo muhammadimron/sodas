@@ -89,7 +89,7 @@
                 <div class="space-y-4">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center space-x-2">
-                            <img src="https://i.pravatar.cc/300?img=70" class="w-[40px] rounded-full">
+                            <img src="https://i.pravatar.cc/300?img=70" class="w-[40px] rounded-full" alt="avatar">
                             
                             <p class="text-xs"><strong>Master Stark</strong></p>
                         </div>
