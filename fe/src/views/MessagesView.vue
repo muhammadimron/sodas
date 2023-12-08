@@ -7,7 +7,7 @@
                         <div class="flex items-center space-x-2">
                             <img src="https://i.pravatar.cc/300?img=70" class="w-[40px] rounded-full" alt="avatar">
                             
-                            <p class="text-xs"><strong>Code With Stein</strong></p>
+                            <p class="text-xs"><strong>Master Stark</strong></p>
                         </div>
 
                         <span class="text-xs text-gray-500">18 minutes ago</span>
@@ -17,7 +17,7 @@
                         <div class="flex items-center space-x-2">
                             <img src="https://i.pravatar.cc/300?img=70" class="w-[40px] rounded-full" alt="avatar">
                             
-                            <p class="text-xs"><strong>Code With Stein</strong></p>
+                            <p class="text-xs"><strong>Master Stark</strong></p>
                         </div>
 
                         <span class="text-xs text-gray-500">18 minutes ago</span>
@@ -27,7 +27,7 @@
                         <div class="flex items-center space-x-2">
                             <img src="https://i.pravatar.cc/300?img=70" class="w-[40px] rounded-full" alt="avatar">
                             
-                            <p class="text-xs"><strong>Code With Stein</strong></p>
+                            <p class="text-xs"><strong>Master Stark</strong></p>
                         </div>
 
                         <span class="text-xs text-gray-500">18 minutes ago</span>
