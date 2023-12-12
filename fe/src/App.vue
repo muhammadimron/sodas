@@ -37,5 +37,16 @@
   </nav>
   <main class="px-8 py-6 bg-gray-100">
     <RouterView />
+    <ToastComponent />
   </main>
 </template>
+
+<script>
+  import ToastComponent from '@/components/ToastComponent.vue';
+
+  export default {
+    components: {
+      ToastComponent
+    }
+  }
+</script>

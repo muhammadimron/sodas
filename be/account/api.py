@@ -13,8 +13,7 @@ def signup(request):
     form = SignupForm({
         'email': data.get('email'),
         'name': data.get('name'),
-        'password1': data.get('password1'),
-        'password2': data.get('password2')
+        'password': data.get('password1'),
     })
 
     if form.is_valid():

@@ -18,7 +18,7 @@ export const useToastStore = defineStore({
             this.isVisible = true
 
             setTimeout(() => {
-                this.classes += ' -translate-y-20'
+                this.classes += ' -translate-y-28'
             }, 10)
 
             setTimeout(() => {
