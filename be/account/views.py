@@ -1,9 +1,10 @@
 from django.contrib.auth.hashers import make_password
-from rest_framework import viewsets, status
+from django.forms.models import model_to_dict
+from rest_framework import viewsets, status, exceptions
 from rest_framework.response import Response
 
 from .models import User
-from .serializers import UserSerializer
+from .serializers import UserSerializer, MeSerializer
 
 class SignupViewsets(viewsets.GenericViewSet):
     queryset = User.objects.all()
@@ -22,3 +23,18 @@ class SignupViewsets(viewsets.GenericViewSet):
         instance = serializer.save()
 
         return Response(self.get_serializer(instance).data, status=status.HTTP_201_CREATED)
+
+class MeViewsets(viewsets.ReadOnlyModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = MeSerializer,
+
+    def list(self, request, *args, **kwargs):
+        me = request.user
+        return Response({
+            "id": me.id,
+            "name": me.name,
+            "email": me.email
+        }, status=status.HTTP_200_OK)
+
+    def retrieve(self, request, *args, **kwargs):
+        raise exceptions.MethodNotAllowed("GET")

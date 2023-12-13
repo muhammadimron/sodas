@@ -7,9 +7,9 @@ from . import api, views
 router = SimpleRouter()
 
 router.register(r'signup', views.SignupViewsets, basename="signup")
+router.register(r'me', views.MeViewsets, basename="me")
 
 urlpatterns = [
-    # path('signup/', api.signup, name='signup'),
     path('', include(router.urls)),
     path('login/', TokenObtainPairView.as_view(), name='token_obtain'),
     path('refresh/', TokenRefreshView.as_view(), name='token_refresh')
