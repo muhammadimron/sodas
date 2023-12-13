@@ -11,15 +11,17 @@
             </div>
         </div>
         <div class="main-center col-span-2 space-y-4">
-            <div class="bg-white border border-gray-200 rounded-lg">
-                <div class="p-4">
-                    <textarea class="p-4 w-full bg-gray-100 rounded-lg" placeholder="What are you thinking about?"></textarea>
+            <form @submit.prevent="handleSubmit()">
+                <div class="bg-white border border-gray-200 rounded-lg">
+                    <div class="p-4">
+                        <textarea v-model="body" class="p-4 w-full bg-gray-100 rounded-lg" placeholder="What are you thinking about?"></textarea>
+                    </div>
+                    <div class="p-4 border-t border-gray-100 flex justify-between">
+                        <button class="inline-block py-4 px-6 bg-gray-600 text-white rounded-lg">Attach Image</button>
+                        <button type="submit" class="inline-block py-4 px-6 bg-purple-600 text-white rounded-lg">Post</button>
+                    </div>
                 </div>
-                <div class="p-4 border-t border-gray-100 flex justify-between">
-                    <a href="#" class="inline-block py-4 px-6 bg-gray-600 text-white rounded-lg">Attach Image</a>
-                    <a href="#" class="inline-block py-4 px-6 bg-purple-600 text-white rounded-lg">Post</a>
-                </div>
-            </div>
+            </form>
             <!-- <div class="p-4 bg-white border border-gray-200 rounded-lg">
                 <div class="mb-6 flex items-center justify-between">
                     <div class="flex items-center space-x-6">
@@ -56,7 +58,7 @@
                     <div class="mb-6 flex items-center justify-between">
                         <div class="flex items-center space-x-6">
                             <img src="https://i.pravatar.cc/300?img=70" alt="avatar" class="w-[40px] rounded-full">
-                            <p><strong>{{ post.created_by.name }}</strong></p>
+                            <p><strong>{{ post.user.name }}</strong></p>
                         </div>
                         <p class="text-gray-600">{{ post.created_at_formatted }}</p>
                     </div>
@@ -100,7 +102,8 @@ export default {
     name: "FeedView",
     data(){
         return {
-            posts: []
+            posts: [],
+            body: ''
         }
     },
     components: {
@@ -113,7 +116,17 @@ export default {
         getFeed(){
             axios.get('/api/post/')
                 .then(response => {
-                    this.posts = response.data
+                    this.posts = response.data.reverse()
+                })
+                .catch(error => console.error(error))
+        },
+        handleSubmit(){
+            axios.post('/api/post/', {
+                body: this.body
+            })
+                .then(response => {
+                    this.posts.unshift(response.data)
+                    this.body = ''
                 })
                 .catch(error => console.error(error))
         }
