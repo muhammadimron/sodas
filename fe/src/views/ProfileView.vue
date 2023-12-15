@@ -14,6 +14,9 @@
           <p class="text-xs text-gray-500">182 friends</p>
           <p class="text-xs text-gray-500">120 posts</p>
         </div>
+        <div class="mt-6">
+            <button @click="sendFriendshipRequest()" class="inline-block py-4 px-3 bg-purple-600 text-xs text-white rounded-lg">Send friendship request</button>
+        </div>
       </div>
     </div>
     <div class="main-center col-span-2 space-y-4">
@@ -125,6 +128,11 @@ export default {
     this.getFeed();
   },
   methods: {
+    sendFriendshipRequest(){
+        axios.post(`/api/friends/${this.$route.params.id}/requesting/`)
+            .then(response => console.log(response.data))
+            .catch(error => console.error(error))
+    },
     getFeed() {
       axios
         .get(`/api/post/${this.$route.params.id}/profile/`)
