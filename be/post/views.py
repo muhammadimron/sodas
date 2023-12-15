@@ -1,3 +1,4 @@
+from django.db.models import Q
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -24,5 +25,12 @@ class PostViewsets(viewsets.ModelViewSet):
     @action(methods=['GET'], detail=True)
     def profile(self, request, pk, *args, **kwargs):
         data = Post.objects.filter(created_by__id=pk)
+        serializer = PostSerializer(data, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    @action(methods=(['POST']), detail=False)
+    def search(self, request, *args, **kwargs):
+        query = request.data["query"]
+        data = Post.objects.filter(Q(body__icontains=query) | Q(created_by__name__icontains=query))
         serializer = PostSerializer(data, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
